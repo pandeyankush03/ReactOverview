@@ -4,105 +4,73 @@ import {
   CardBody,
   Table
 } from 'reactstrap';
+import axios from 'axios';
 
 class TablePage extends Component {
+    constructor() {
+        super();
+        this.state = { business: [] };
+    }
+    componentDidMount() {
+        debugger;
+        axios.get('https://reqres.in/api/users?page=2')
+            .then(response => {
+                this.setState({ business: response.data.data });
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+
+    tabRow() {
+        return this.state.business.map((obj,i)=> {
+            return <tr  obj key={i} >
+                                <td>
+                    {obj.id}
+                </td>
+                <td>
+                    <img src={obj.avatar} />
+                </td>
+                <td>
+                    {obj.first_name}
+                </td>
+                <td>
+                    {obj.last_name}
+                </td>
+                <td>
+                    {obj.email}
+                </td>
+                
+                {/* <td>
+                    <Link to={"/edit/" + obj.patientId} className="btn btn-success">Edit</Link>
+                </td>
+                <td>
+                    <button type="button" onClick={this.DeletePatient} className="btn btn-danger">Delete</button>
+                </td> */}
+            </tr>;
+        });
+    }
+
   render() {
     return (
         <Card>
             <CardBody>
-                Basic Table
-                <Table>
-                    <thead>
+            <Table hover>
+            <thead>
                         <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
+                            <th><b>Id</b></th>
+                            <th><b>Profile</b></th>
+                            <th><b>First Name</b></th>
+                            <th><b>Last Name</b></th>
+                            <th><b>Email</b></th>
+                            
+                           
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                        {this.tabRow()}
                     </tbody>
-                </Table>
-                Striped Table
-                <Table striped>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </Table>
-                Hover Table
-                <Table hover>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </Table>
+            </Table>
             </CardBody>
         </Card>
     )

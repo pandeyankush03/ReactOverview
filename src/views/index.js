@@ -60,7 +60,7 @@ const pageList = [
     component: Tabs,
   },
   {
-    name: 'Tables',
+    name: 'Overview',
     path: '/elements/tables',
     component: Tables,
   },

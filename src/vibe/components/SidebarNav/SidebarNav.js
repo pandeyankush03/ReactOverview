@@ -32,8 +32,7 @@ export default class SidebarNav extends Component {
       return (
         <div className="site-logo-bar">
           <NavLink to="/" className="navbar-brand">
-            {logo && <img src={logo} alt="" />}
-            {logoText && <span className="logo-text">{logoText}</span>}
+          <span className="logo-text">Ankush Pandey</span>
           </NavLink>
         </div>
       );

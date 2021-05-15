@@ -76,76 +76,27 @@ export default class DashboardLayout extends Component {
                 routes={routes}
                 {...this.props}
               >
-                <HeaderNav />
+                
               </Header>
               <PageContent>
                 <Switch>
                   {routes.map((page, key) => (
                     <Route path={page.path} component={page.component} key={key} />
                   ))}
-                  <Redirect from="/" to="/home" />
+                  <Redirect from="/" to="/elements/tables" />
                 </Switch>
               </PageContent>
             </Page>
           </div>
           <Footer>
-            <span>Copyright © 2019 Nice Dash. All rights reserved.</span>
+            <span>Copyright © 2021 Ankush Pandey. All rights reserved.</span>
             <span>
               <a href="#!">Terms</a> | <a href="#!">Privacy Policy</a>
             </span>
-            <span className="ml-auto hidden-xs">
-              Made with{' '}
-              <span role="img" aria-label="taco">
-                🌮
-              </span>
-            </span>
           </Footer>
-          <Chat.Container>
-            {this.state.showChat1 && (
-              <Chat.ChatBox name="Messages" status="online" image={avatar1} close={this.closeChat} />
-            )}
-          </Chat.Container>
         </div>
       </ContextProviders>
     );
   }
 }
 
-function HeaderNav() {
-  return (
-    <React.Fragment>
-      <NavItem>
-        <form className="form-inline">
-          <input className="form-control mr-sm-1" type="search" placeholder="Search" aria-label="Search" />
-          <Button type="submit" className="d-none d-sm-block">
-            <i className="fa fa-search" />
-          </Button>
-        </form>
-      </NavItem>
-      <UncontrolledDropdown nav inNavbar>
-        <DropdownToggle nav caret>
-          New
-        </DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem>Project</DropdownItem>
-          <DropdownItem>User</DropdownItem>
-          <DropdownItem divider />
-          <DropdownItem>
-            Message <Badge color="primary">10</Badge>
-          </DropdownItem>
-        </DropdownMenu>
-      </UncontrolledDropdown>
-      <UncontrolledDropdown nav inNavbar>
-        <DropdownToggle nav>
-          <Avatar size="small" color="blue" initials="JS" />
-        </DropdownToggle>
-        <DropdownMenu right>
-          <DropdownItem>Option 1</DropdownItem>
-          <DropdownItem>Option 2</DropdownItem>
-          <DropdownItem divider />
-          <DropdownItem>Reset</DropdownItem>
-        </DropdownMenu>
-      </UncontrolledDropdown>
-    </React.Fragment>
-  );
-}
